@@ -1,0 +1,267 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Game-club</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/mobile.css" media="screen and (max-width : 568px)">
+	<script type="text/javascript" src="js/mobile.js"></script>
+</head>
+<body>
+	<div id="header">
+		<a href="index.html" class="logo">
+			<img src="photo/logo2.png" alt="">
+		</a>
+		<ul id="navigation">
+			<li class="selected">
+				<a href="index.html">home</a>
+			</li>
+			<li>
+				<a href="login.html">login</a>
+			</li>
+			<li>
+				<a href="about.html">location</a>
+			</li>
+			
+		  <li>
+				<a href="gallery.html">favourite</a>
+			</li>
+		</ul>
+	</div>
+	<div id="body">
+		<h1><span>favourite</span></h1>
+		<div>
+				<p id="UserFav" class="intro-text text-center"></p>
+				<p id="UserFav2"class="intro-text text-center"></p>
+				<p id="UserFav3"class="intro-text text-center"></p>
+
+				</div>
+		<ul class="gallery">
+			<li>
+				<div id="fav1">
+				 <h4> <p id = "D1">Battlefleld1</p>
+					<img   src="photo/B.jpg" alt="" width="296" height="330">
+					
+					<input type="button" id = "add1"  value = "add to favourite list"/>
+					</div>
+					<div id="rem1">
+					<input type="button" id = "remove1"  value = "remove from favourite list"/>
+				</div>
+			</li>
+			<li>
+			<h4> <p id = "D1">Darksoul 3</p>
+				<div id="fav2">
+					<img  src="photo/D.jpg" alt="" width="296" height="330">
+					
+					<input type="button"id = "add2"  value = "add to favourite list"/>
+					</div>
+					<div id="rem2">
+					<input type="button" id = "remove2"  value = "remove from favourite list"/>
+				</div>
+			</li>
+			<li>
+			<h4> <p id = "D1">NieR:Automata</p>
+				<div id="fav3">
+					<img  src="photo/NieR-Automata.jpg" alt="" width="296" height="330">
+					
+					<input type="button"id = "add3"  value = "add to favourite list"/>
+					</div>
+					<div id="rem3">
+					<input type="button" id = "remove3"  value = "remove from favourite list"/>
+				</div>
+			</li>
+
+	  </ul>
+	</div>
+	<script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+
+	
+	<div id="footer">
+		<div>
+			<p>&copy; 2017 by Gary. All rights reserved.</p>
+			<ul>
+				
+			</ul>
+		</div>
+	</div>
+</body>
+<script>
+	var socket = io();
+
+
+	socket.on("login_success", function(data) {
+	username = data.username;
+	fav1 = data.fav1;
+//  var obj1 = JSON.parse(fav1);
+	fav2 = data.fav2;
+	fav3 = data.fav3;
+  console.log(data);
+	console.log("A :" + username);
+	console.log(fav1+"/"+fav2+"/"+fav3);
+
+
+  $(function(){
+  console.log("12222");
+  alert("111");
+	if (fav1 != null){
+	document.getElementById("UserFav").innerHTML = fav1;
+	
+	}
+  if (fav2 != null){
+	document.getElementById("UserFav2").innerHTML = fav2;
+	}
+  if (fav3 != null){
+	document.getElementById("UserFav3").innerHTML = fav3;
+	}
+	});
+
+	});
+
+
+
+
+  $(function () {
+		$("#add1").click(function(e) {
+		
+		console.log("clicked");
+		var user = {};
+    user.username = username;
+		user.fav =  document.getElementById("D1").innerHTML;
+		user.action = "addFav1";
+		console.log("member" +": " + username);
+        //alert(inputName);
+				//alert(user.favorite);
+				alert("Favorite added!");
+				$.ajax( {
+					url: "http://localhost:9000/member.html",
+					type: "POST",
+					data: user,
+					success: function(data) {
+					console.log("favorite added!");
+				}
+				});
+				return false;
+		});
+	});
+
+
+
+  $(function () {
+		$("#remove1").click(function(e) {
+		var user = {};
+    user.username = username;
+		user.action = "remove1";
+		console.log("member" +": " + username);
+        //alert(inputName);
+				//alert(user.favorite);
+				alert("Favorite removed!");
+				$.ajax( {
+					url: "http://localhost:9000/member.html",
+					type: "POST",
+					data: user,
+					success: function(data) {
+					console.log("favorite remove!");
+				}
+				});
+				return false;
+		});
+	});
+
+
+  $(function () {
+		$("#add2").click(function(e) {
+		var user = {};
+        user.username = username;
+		user.fav =  document.getElementById("D2").innerHTML;
+		user.action = "addFav2";
+		console.log("member" +": " + username);
+        //alert(inputName);
+				//alert(user.favorite);
+				alert("Favorite added!");
+				$.ajax( {
+					url: "http://localhost:9000/member.html",
+					type: "POST",
+					data: user,
+					success: function(data) {
+					console.log("favorite added!");
+				}
+				});
+				return false;
+		});
+	});
+
+  $(function () {
+		$("#remove2").click(function(e) {
+		var user = {};
+        user.username = username;
+		user.action = "remove2";
+		console.log("member" +": " + username);
+        //alert(inputName);
+				//alert(user.favorite);
+				alert("Favorite removed!");
+				$.ajax( {
+					url: "http://localhost:9000/member.html",
+					type: "POST",
+					data: user,
+					success: function(data) {
+					console.log("favorite remove!");
+				}
+				});
+				return false;
+		});
+	});
+
+  $(function () {
+		$("#add3").click(function(e) {
+		var user = {};
+        user.username = username;
+		user.fav =  document.getElementById("D3").innerHTML;
+		user.action = "addFav3";
+		console.log("member" +": " + username);
+        //alert(inputName);
+				//alert(user.favorite);
+				alert("Favorite added!");
+				$.ajax( {
+					url: "http://localhost:9000/member.html",
+					type: "POST",
+					data: user,
+					success: function(data) {
+					console.log("favorite added!");
+				}
+				});
+				return false;
+		});
+	});
+
+  $(function () {
+		$("#remove3").click(function(e) {
+		var user = {};
+        user.username = username;
+		user.action = "remove3";
+		console.log("member" +": " + username);
+		console.log("member" +": " + username);
+        //alert(inputName);
+				//alert(user.favorite);
+				alert("Favorite removed!");
+				$.ajax( {
+					url: "http://localhost:9000/member.html",
+					type: "POST",
+					data: user,
+					success: function(data) {
+					console.log("favorite remove!");
+				}
+				});
+				return false;
+		});
+	});
+
+
+
+	</script>
+
+</html>

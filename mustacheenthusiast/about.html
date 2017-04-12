@@ -1,0 +1,92 @@
+
+<!-- Website Template by freewebsitetemplates.com -->
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Game-club</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/mobile.css" media="screen and (max-width : 568px)">
+	<script type="text/javascript" src="js/mobile.js"></script>
+</head>
+<body>
+	<div id="header">
+		<a href="index.html" class="logo">
+			<img src="photo/logo2.png" alt="">
+		</a>
+		<ul id="navigation">
+			<li class="selected">
+				<a href="index.html">home</a>
+			</li>
+			<li>
+				<a href="login.html">login</a>
+			</li>
+			<li>
+				<a href="about.html">location</a>
+			</li>
+			
+		  <li>
+				<a href="gallery.html">favourite</a>
+			</li>
+		</ul>
+	</div>
+	<div id="body">
+		<h1>&nbsp;</h1>
+		
+			<div class="widget-content">
+							<div class="page-title">Location of VTC</div>
+							<br>
+							
+							<style>
+							#map {
+								width: 100%;
+								height: 400px;
+								background-color: white;
+							}
+							</style>
+								<div id="map"></div>
+                            <div class="contact-information">
+                            	<div class="row">
+                            		<div class="col-md-6 col-sm-6">
+                                
+                            			<p>Address: 9/F, VTC Tower 27 Wood Road Wan Chai</p>
+                            		</div> <!-- /.col-md-6 -->
+                            		<div class="col-md-6 col-sm-6 text-right">
+                            			<ul>
+                            				<div>Tel: (852)39743664</div>
+                            				<div>Email: open@vtc.edu.hk</div>
+                            			</ul>
+                            		</div> <!-- /.col-md-6 -->
+                            	</div> <!-- /.row -->
+                            </div> <!-- /.contact-information -->
+						</div>
+		</div>
+	</div>
+
+	<div id="footer">
+		<div>
+			<p>&copy; 2017 by Gary. All rights reserved.</p>
+			<ul>
+				
+			</ul>
+		</div>
+	</div>
+</body>
+	<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnXHokpOy_wqm5vbFNfDbEdkuTbIi1hJk&callback=initMap">
+    </script>
+<script>
+
+function initMap() {
+			var mapOptions = {
+			  	zoom: 18,
+			  	center: {lat: 22.2774528, lng: 114.1753353}
+			}
+			var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+			var marker = new google.maps.Marker({
+			  	position: {lat: 22.2765435, lng: 114.1775005},
+			  	map: map
+			});
+		}
+</script>
+</html>
